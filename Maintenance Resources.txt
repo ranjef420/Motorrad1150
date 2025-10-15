@@ -1,0 +1,302 @@
+# R1150RT TECHNICAL RESOURCES
+
+## OEM DOCUMENTS (PRIMARY)
+
+- R1150RT Maintenance Instructions: 'R1150RT Maintenance Instructions.pdf'
+- R1150RT Repair Manual: 'R1150RT Repair Manual.pdf'
+- R1150RT Riders Manual: 'R1150RT Riders Manual.pdf'
+- R1150RT Wiring Diagram: 'R1150RT Electrical Schematic.pdf'
+
+---
+
+## ESSENTIAL PARTS DIAGRAMS
+
+- RealOEM (PRIMARY): https://www.realoem.com/bmw/enUS/partgrp?id=0499-USA-09-2003-R22-BMW-R_1150_RT_00_0419%2C0499_
+- BMW OEM Parts: https://www.shopbmwmotorcycles.com/
+- Max BMW Fiche: https://shop.maxbmw.com/fiche/partsfiche.aspx
+- A&S Cycles Catalog: http://www.ascycles.com/illustrated_parts_catalog_main.aspx
+- Fiche Symbol Explanation: http://bmwmotorcycletech.info/partsymbols.htm
+
+---
+
+## OILHEAD-SPECIFIC MAITENANCE GUIDES
+
+Critical Maintenance
+- R1150 Spline Lube: http://advrider.com/forums/showthread.php?t=683210
+- R1100 Master Cylinder Reconditioning: http://www.largiader.com/tech/r11mc/
+- Valeo Starter R1150GS Rebuild: https://edelweiss.smugmug.com/Motorcycles/Technical-Stuff/BMW-R1150-GS-Adventure-Valeo/
+- Oilhead Starter Overhaul: http://advrider.com/index.php?resources/squeeking-starter-repair.53/
+- Valeo Starter (Largiader): http://www.largiader.com/tech/valeo/
+- Oilhead Carbon Canister Removal: https://ibmwr.org/index.php/1997/07/10/carbon-canister-removal/
+
+General Service
+- Koni Shock Service: http://www.zimmerframeracing.com/koni_shocks/index.htm
+- Bosch Starter Repair: https://www.thisoldtractor.com/moto_guzzi_loopframe_starter_and_solenoid_repair_-bosch-.html
+- Starter Electrical (Jhau): http://jhau.maliwi.de/mot/r-elec.html
+- Wheel Bearings (Steve's Workshop): http://steves-workshop.co.uk/vehicles/bmw/wheelbearing/wheelbearingindex.htm
+- Krauser/BMW Latch Repair: http://janetkagan.com/BMW/Latch_Repair.html
+- Engine Break-In Secrets: http://www.mototuneusa.com/break_in_secrets.htm
+- Turn Signal Flasher Repair: http://www.pt-photos.com/relay_bmw_turnsignal.htm
+- Gas Tank POR-15 Reline: https://mklsportster.com/wp-content/uploads/mcn-por15.pdf
+
+Service Schedules
+- BMW Service Schedules: http://www.ascycles.com/bmw_motorcycle_service_and_maintenance_schedules.aspx
+---
+
+## ELECTRICAL & CHARGING SYSTEMS
+
+System Diagnostics & Testing
+- Thunderchild System Checks: http://thunderchild-design.com/info.html#chargsys
+- Charging System (Buchanan): http://www.buchanan1.net/charge.html
+- Charging System (Largiader): http://www.largiader.com/articles/charging/
+- Charging System (Jhau): http://jhau.maliwi.de/mot/r-elec.html
+- Charging System Testing (ADV): http://www.advrider.com/forums/showpost.php?p=22657104&postcount=898
+- Diode Board Testing: https://robfrankham.com/diode-board-test
+- Digital Multimeter Usage: http://support.fluke.com/find-sales...SEN-MAY-12&utm_medium=email&utm_source=Eloqua
+
+Relays & Components
+- Relay Tech & FAQs: http://www.airheads.org/content/view/159/98
+- Understanding Relays: http://www.autoshop101.com/forms/hweb2.pdf
+- Enduralast Installation: http://berettaconsulting.com/other/Enduralast/Enduralast.htm
+- Enduralast Regulator Mounting: http://www.advrider.com/forums/showthread.php?t=655092
+
+Wiring Standards & Diagrams
+- R1150RT Wiring Diagrams: https://www.bmwsporttouring.com/topic/110863-r1150rt-electronics-schematics-use-at-your-own-risk/#comment-1194729
+- DIN Wiring Standards: http://www.isham-research.co.uk/quattro/wiring/Typ85/terminals.html
+- Wiring Color Codes: https://www.airheads.org/tech-tips/wiring-color-codes/
+
+---
+
+## WHEELS & BRAKES
+
+Critical ABS Resources
+- BMW Integral ABS Brake Bleeding & Flushing: http://users.rcn.com/dehager/service/service_abs3.pdf [ESSENTIAL REFERENCE]
+
+---
+
+## WINDSCREENS & AERODYNAMICS
+
+- Wind Tunnel Tests (Caltech 1968): http://windtunnel.caltech.edu/tenfoot/mcreport/index.html
+- Windshield Background Info: http://motorcycleinfo.calsci.com/Fairing.html
+
+---
+
+## MAINTENANCE & DIAGNOSTICS
+
+Diagnostic Tools
+- GS-911 Setup: http://forums.bmwmoa.org/showthread.php?71489-GS-911-on-a-Budget
+- GS-911 Functionality Chart: https://www.hexgs911.com/function-chart/
+- Fault Code Lookup: https://bmwfault.codes/
+
+---
+
+## PERFORMANCE THEORY & TUNING
+
+Note: R1150RT uses Bosch Motronic fuel injection. Tuning options are limited 
+compared to earlier models. These resources provide foundational understanding 
+of engine performance principles.
+
+Compression & Engine Theory
+- Measuring Compression Ratio: http://www.cafebeemer.com.au/blog/Compression_ratio/compression_ratio.html
+  (Useful for understanding compression testing results and engine health assessment)
+
+Performance Theory
+- High Performance Tuning Theory (Dr. Curve): http://garnet.acns.fsu.edu/~jroche/
+  (Academic approach to engine performance - theory applicable across platforms, 
+  though R1150RT ECU limits practical modifications)
+
+---
+
+## COMPREHENSIVE TECHNICAL PAGES
+
+- Bob Fleischer "Snowbum" (extensive Oilhead content): https://bmwmotorcycletech.info/technical-articles-list.htm
+- Anton Largiader's Technical Pages: http://www.largiader.com/
+- Rob Frankham's Articles: https://robfrankham.com/article-links-1
+- IBMWR Oilhead Tech Articles: https://ibmwr.org/
+- Horizons Unlimited BMW Technical: http://www.horizonsunlimited.com/tech/
+- Oilhead & Sidecar Focus: http://www.theroadscholar.net/Motorcycle_Tech.htm
+- Wethead Torque Values (reference): http://www.jvbproductions.com/Wethead%20Torques%204.pdf
+
+---
+
+## OILHEAD FORUMS
+
+- Oilhead IBMWR (International BMW Riders): https://ibmwr.org/
+- BMWSportTouring: https://www.bmwsporttouring.com/forum/16-oilheads/
+
+Specific Forum Topics
+
+General
+- Known Issues: https://www.bmwsporttouring.com/topic/84944-r1150rt-2004-67k-known-issues/#comment-958851
+
+ABS / Brake System
+- Beginner Brake Bleed and Basics: https://www.bmwsporttouring.com/topic/91225-beginner-brake-bleed-and-basics-r1150rt-best-tutorial-broken-links/#comment-1016925
+- Brakes - Pads, Lines, Flush Question: https://www.bmwsporttouring.com/topic/106350-r1150rt-brakes-pads-lines-flush-question/#comment-1136889
+- Brake Service Failure: https://www.bmwsporttouring.com/topic/108392-2004-r1150rt-brake-service-failure-dash-looks-like-a-christmas-tree/#comment-1161088
+- ABS Brake Fluid Leak from Vent Tube: https://www.bmwsporttouring.com/topic/101133-2004-r1150rt-abs-brake-fluid-leak-from-vent-tube/#comment-1088120
+- Brake Fluid Leak: https://www.bmwsporttouring.com/topic/97429-2004-r1150rt-brake-fluid-leak/#comment-1055344
+- 70K Miles Brake Light Solid: https://www.bmwsporttouring.com/topic/104225-70k-miles-2004-r-1150-rt-brake-light-solid/#comment-1116941
+- IABS Warning Lights: https://www.bmwsporttouring.com/topic/85824-iabs-warning-lights-2004-r1150rt/#comment-968708
+- iABS Low Voltage: https://www.bmwsporttouring.com/topic/110828-r1150rt-iabs-low-voltage/?do=findComment&comment=1194264
+- ABS Fault: https://www.bmwsporttouring.com/topic/111042-r1150rt-2004-abs-fault/#comment-1197408
+- ABS Issue: https://www.bmwsporttouring.com/topic/96135-2004-r1150rt-abs-issue/#comment-1046038
+- Brake Question: https://www.bmwsporttouring.com/topic/86673-2004-r1150rt-brake-question/#comment-977784
+- ABS Trouble: https://www.bmwsporttouring.com/topic/94239-2004-r1150rt-abs-trouble/#comment-1033666
+- ABS Problem: https://www.bmwsporttouring.com/topic/85286-2004-r-1150-rt-abs-problem/#comment-962519
+- P Brake Issue: https://www.bmwsporttouring.com/topic/111627-r1150rt-p-brake-issue/#comment-1204374
+
+Engine / Starting / Running Issues
+- Engine Cut Out While Riding and Will Not Start: https://www.bmwsporttouring.com/topic/106516-2004-r1150rt-engine-cut-out-while-riding-and-will-not-start/#comment-1138799
+- Engine Quits (Thread 1): https://www.bmwsporttouring.com/topic/97285-2004-r1150rt-engine-quits/#comment-1054111
+- Engine Quits (Thread 2): https://www.bmwsporttouring.com/topic/97284-2004-r1150rt-engine-quits/#comment-1054110
+- Misfiring: https://www.bmwsporttouring.com/topic/73045-r1150rt-misfiring/#comment-834415
+- Throttle Body Tips/Questions: https://www.bmwsporttouring.com/topic/97315-04-r1150rt-throttle-body-tipsquestions/#comment-1054481
+- Problems Starting the Bike - Bad Starter: https://www.bmwsporttouring.com/topic/40228-2004-bmw-r1150rt-problems-starting-the-bike-bad-starter/#comment-442505
+
+Electrical / Accessories / Power
+- LEDs: https://www.bmwsporttouring.com/topic/93572-04-r1150rt-leds/#comment-1029612
+- Accessories and Power: https://www.bmwsporttouring.com/topic/84673-r1150rt-2004-accessories-and-power/#comment-955986
+
+Miscellaneous / Maintenance / Modifications
+- Grip Replacement: https://www.bmwsporttouring.com/topic/108973-2004-r1150rt-grip-replacement/#comment-1169138
+- Best Use of Radio Compartment: https://www.bmwsporttouring.com/topic/67228-r1150rt-best-use-of-the-radio-compartment/#comment-769130
+- Vibration: https://www.bmwsporttouring.com/topic/56501-2004-r1150rt-vibration/#comment-632110
+
+---
+
+## REPAIR GUIDES & VIDEO RESOURCES
+
+R1150-Specific Video Guides
+- Jim Von Baden DVD Series (R1100/1150/1200): http://www.jimvonbaden.com/JVB_Productions.html [HIGHLY RECOMMENDED]
+- Chris Harris Bavarian Bomber Wrench: http://www.youtube.com/user/BavarianBomberWrench/videos
+- Illinois BMW Riders (Oilhead/K-Bike): https://www.youtube.com/channel/UC8sSaRbK7trf0dtfXDOQ0pg
+
+Suspension Resources
+- Tony Foale Suspension: http://www.tonyfoale.com/
+- Ohlins Setup Manual: http://www.ohlins.com/Products/OwnersManuals/OM_07241-02.pdf
+- Suspension Fluid Info: http://www.peterverdone.com/wiki/index.php?title=Suspension_Fluid
+- Gold Valve Emulators - How They Work: http://www.racetech.com/page/title/Emulators-How They Work
+- Gold Valve Emulators - Tuning Guide: http://www.racetech.com/page/title/Emulator Tuning Guide
+- Forking by Frank: http://www.frankmain.qpg.com/
+
+Tire Information
+- Metric Tire Calculator: https://www.tacomaworld.com/tirecalc
+- Tire DOT Date Code: http://www.chaparral-racing.com/blog/2013/01/16/tech-tips-read-motorcycle-tire-date-codes/
+- Tire DOT Plant Code: http://www.tiresafetygroup.com/tire-dot-plant-codes-sorted-plant-code/
+- How to Read Tire Markings: http://www.jpcycles.com/how-to-read-motorcycle-tires
+
+---
+
+## PARTS SUPPLIERS
+
+Major US Sources
+- Beemer Boneyard (Randolph, NJ): http://www.beemerboneyard.com/
+- Ted Porter Beemershop: http://www.beemershop.com
+- Tom Cutter Rubber Chicken Racing: http://rubberchickenracinggarage.com/
+- Anton Largiader: http://www.largiader.com
+- Greg Hutchinson Airhead Adventure: https://airheadadventure.com/
+- Bob's BMW: http://www.bobsbmw.com/
+- Boxerworks: https://boxerworks.org/
+- Hucky's BMW: http://www.bmwhucky.com/
+- Todd Millican Britts & Beemers (Idaho): https://www.brittsandbeemers.com/
+- Moto Hank (South Texas): https://www.motohank.com/bmw-mc-service
+
+International Suppliers
+- Airhead Parts Online (Canada): http://airheadpartsonline.com/
+- Motobins (UK): http://www.motobins.co.uk/
+- BMW Boxer Toko (Netherlands): http://bmwboxersupplies.com/
+- Bayermotor (Germany): https://www.bayermotor.de/?country_preselect_country=AU
+- Wunderlich (Germany): http://www.wunderlich.de/shop/en/
+- Hornig (Germany): https://www.motorcycleparts-hornig.com/
+- MotoWerks (Canada): https://www.mmmotowerks.com/
+- James Sherlock (UK): http://www.james-sherlock.co.uk/
+- Moteren Israel: http://www.motoren-israel.com/
+
+---
+
+## SPARK PLUGS
+
+R1150RT Specification: NGK DCPR7E or Bosch FR7LDC
+
+- NGK Spark Plug Technical Support: http://ngksparkplugs.com/tech_support/spark_plugs/index.asp
+- NGK Spark Plug 411: http://www.ngk.com/sparkplug411_ngk.asp
+- Spark Plug Reading Guide (Dan's MC): http://www.dansmc.com/spark_plugs/spark_plugs_catalog.html
+- Cross Reference List (comprehensive): https://www.sparkplug-crossreference.com/
+- Bosch to NGK Cross Reference: http://www.clubplug.net/bosch_ngk.html
+
+---
+
+## SPECIALTY COMPONENTS & UPGRADES
+
+LED Lighting
+- LED Project: http://hstrial-wniglobalinc.intuitwebsites.com/BMW-LEDs.html
+- LED Replacements: https://www.euromotoelectrics.com/searchresults.asp?Search=LED&Submit=Submit
+
+Windscreen Suppliers
+- Gustafsson: http://www.bikescreen.com/index.html
+- Clearview: http://www.clearviewshields.com/
+- Aeroflow: http://www.aeroflowscreens.com/
+- Rifle: http://www.rifle.com/
+- Zero Gravity: http://www.zerogravity-racing.com/sportbikes/bmw_sptbks/800.htm
+- Givi Universal: https://giviusa.com/collections/universal-windshields
+- Twisted Throttle: https://twistedthrottle.com/product-category/body-and-fairing/windshields-accessories/
+- Parabellum: http://www.parabellum.com/
+- Slipstreamer: http://slipstreamer.com/
+
+Charging & Electrical
+- Motorrad Electrik: http://www.motoelekt.com
+- EuroMotoElectrics: http://www.euromotoelectrics.com/
+- Eastern Beaver Wiring: http://www.easternbeaver.com/
+
+Handlebars
+- Flanders & Magura Bars: http://www.sideroadcycles.com/ImportedMotorcycles/ImportHandlebars/BMWbars/MaguraBMW.html
+
+Brake Components
+- Brembo Supplies: https://store.bevelheaven.com/Brake-Related-Parts/
+
+Specialty Fasteners
+- Dzus Fasteners: http://kurveygirl.com/shop/index.php?cPath=104
+- Aircraft Spruce: http://www.aircraftspruce.com/
+- The Bolt Guy: http://www.theboltguy.com/
+
+---
+
+## PAINT & REFINISHING
+
+2004 R1150RT OEM Color: Night-Black (nacht-schwarz, Zierl)
+
+Touch-Up & Color Matching
+- Colorite: https://www.colorite.com
+- RS Bike Paint: http://www.rsbikepaint.com/en-us/colours.php#makeid=19&modelid=449
+- Touch Up Direct (later BMWs): https://touchupdirect.com/
+- Scratches Happen: https://scratcheshappen.com/touch-up-paint/
+- BMW Paint Cross-Reference Database: https://paintref.com
+
+---
+
+## TIRES
+
+Tire Manufacturers
+- Michelin: http://www.michelinmotorcycle.com/index.cfm?event=tirecatalog.view
+- Metzeler: http://www.metzelermoto.co.uk/web/default.page
+- Metzeler Pressure Chart: http://www.us.metzelermoto.com/web/products/tire_pressures/default.page
+- Bridgestone: http://www.bridgestone.eu/bfe/tyreSelectorController
+- Avon: http://www.avon-tyres.co.uk/motorcycle
+- Avon US: http://www.avonmotorcycle.com/
+- Avon Tires 101: http://www.avonmoto.com/download/Tires101forConsumers.pdf
+- Continental: http://www.conti-online.com/generator/www/de/en/continental/motorcycle/general/home/index_en.html
+- Pirelli: http://www.pirelli.com/tyre/ww/en/motorcycle/catalog
+
+---
+
+## PART SUBSTITUTIONS & CROSS-REFERENCES
+
+- IBMWR Substitution Guide: https://ibmwr.org/index.php/bmw-parts-substitutes/
+- Real Gaskets: http://www.realgaskets.com/files/motorcycle.htm
+  (Note: Silicone gaskets may not work in fuel areas)
+
+---
+
+## TIE-DOWN TECHNIQUES
+
+- A&S Tiedown Guide: https://www.ascycles.com/pdf/Tiedown2.pdf
