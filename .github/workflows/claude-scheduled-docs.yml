@@ -1,0 +1,37 @@
+name: Claude Documentation Upkeep
+
+on:
+  schedule:
+    - cron: "0 14 * * 1"   # Mondays 14:00 UTC
+  workflow_dispatch:       # allow manual runs
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  docs_maintenance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history for changelog context)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Claude Docs Maintenance
+        uses: anthropics/claude-code-action@v1
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        with:
+          task: "run_prompt"
+          model: "claude-3.7-sonnet"
+          prompt: |
+            You are maintaining the Broomhilda repo docs.
+            - Ensure file naming policy: Hilde_R1150RT_<ManualType>.pdf in /manuals
+            - Ensure dynamic files have date-stamped names and 'Tier' headers
+            - Propose edits to README, AUTHORITY_TIERS.md, and dynamic/README.md
+            - Do NOT alter or move PDFs in /manuals (immutable)
+            - Open a PR titled: "docs: weekly repo hygiene and consistency"
+          open_pull_request: true
+          pr_branch: "chore/claude-docs-upkeep"
+          commit_message: "docs: weekly repo hygiene and consistency"

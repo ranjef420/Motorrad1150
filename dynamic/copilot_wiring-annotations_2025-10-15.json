@@ -1,0 +1,27 @@
+{
+  "file": "copilot_wiring-annotations_2025-10-15.json",
+  "assistant": "GitHub Copilot",
+  "vehicle": "Hilde (R1150RT, Type 0499)",
+  "repository": "https://github.com/ranjef420/Broomhilda",
+  "tier": 3,
+  "purpose": "Annotate electrical schematic connections for readability and future diagnostics automation.",
+  "annotations": [
+    {
+      "circuit_id": "L-01",
+      "component": "Left Handlebar Switch Assembly",
+      "wire_color": "Green/Blue",
+      "function": "Turn Signal – Left",
+      "reference": "Electrical Schematic – Page 3",
+      "notes": "Connects to central relay block pin 4"
+    },
+    {
+      "circuit_id": "R-02",
+      "component": "Right Handlebar Switch Assembly",
+      "wire_color": "Brown/Yellow",
+      "function": "Heated Grip Circuit",
+      "reference": "Electrical Schematic – Page 5",
+      "notes": "Inline 10A fuse shared with radio delete harness"
+    }
+  ],
+  "sync_status": "Pending Git Sync"
+}

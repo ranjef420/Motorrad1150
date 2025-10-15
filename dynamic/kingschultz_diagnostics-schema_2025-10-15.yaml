@@ -1,0 +1,42 @@
+# KING SCHULTZ DIAGNOSTICS SCHEMA – HILDE (R1150RT 0499)
+# Date: 2025-10-15 | Source: KingSchultz | Tier: 2 – Project-Defined Documentation
+
+metadata:
+  author: KingSchultz (Claude)
+  reviewed_by: DjangoGPT
+  vehicle: Hilde (BMW R1150RT, Type 0499)
+  repository: https://github.com/ranjef420/Broomhilda
+  category: diagnostics
+  version: 0.1
+  sync_status: "Pending Git Sync"
+
+structure:
+  - system: "Engine"
+    diagnostics:
+      - id: ENG-001
+        description: "Verify idle speed (warm engine, 1,000 ± 50 rpm)"
+        reference: "Maintenance Manual – Idle Adjustment"
+        requires_tools: ["TwinMax balancer", "Vacuum gauge"]
+      - id: ENG-002
+        description: "Throttle body sync check"
+        reference: "Repair Manual – Throttle Cable Adjustment"
+        outcome: ["Pass", "Needs adjustment"]
+
+  - system: "ABS/Braking"
+    diagnostics:
+      - id: ABS-001
+        description: "Test ABS modulator pump and sensors"
+        reference: "Repair Manual – ABS Bleeding Procedure"
+        notes: "If 'Christmas Tree' lights appear, record fault code via GS-911"
+
+  - system: "Electrical"
+    diagnostics:
+      - id: ELEC-001
+        description: "Battery voltage and charging test"
+        expected_range: "13.8V–14.4V at 3,000 rpm"
+        notes: "Cross-check alternator output"
+
+rules:
+  - "All diagnostic procedures must cite OEM references (Tier 1)."
+  - "Schema updates flagged as Pending Git Sync until validated."
+  - "Assistants may extend with additional subsystems as required."

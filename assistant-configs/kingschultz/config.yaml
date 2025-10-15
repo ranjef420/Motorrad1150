@@ -1,0 +1,64 @@
+claude_project_header.yaml
+───────────────────────────────────────────────────────────
+claude_project_root: "/Users/nickwade/Repos/Broomhilda"
+project_entity: "Hilde"
+vehicle:
+  name_full: "Broomhilda"
+  alias: "Hilde"
+  vin: "WB10499A14ZE93239"
+  model: "R1150RT"
+  type: "Authority / Police"
+  type_code: "0499"
+  color: "Night-Black (nacht-schwarz, Zierl)"
+owner: "Nick (User)"
+
+repository: "https://github.com/ranjef420/Broomhilda"
+
+assistants_linked:
+  - "DjangoGPT (Custom ChatGPT)"
+  - "KingSchultz (Claude)"
+  - "GitHub Copilot"
+
+role_distribution:
+  DjangoGPT:
+    function: "Planning, documentation drafting, primary logic, style coherence"
+    responsibility: "Maintain/reshape project docs and YAML schema"
+  KingSchultz:
+    function: "Code reasoning, doc validation, inter-assistant comms"
+    responsibility: "Ensure technical integrity; coordinate sync"
+  Copilot:
+    function: "Git structure optimization; passive doc suggestions"
+    responsibility: "Suggest revisions; no direct edits to canon"
+
+data_sources:
+  primary_repo: "https://github.com/ranjef420/Broomhilda"
+  ai_project_files: "Mirrored manuals, reference docs, data assets"
+  kb_indexes: "Indexed copies for DjangoGPT, KingSchultz, Copilot"
+
+behavioral_logic_directives:
+  version_awareness:
+    description: >
+      Working docs may be newer in AI/local contexts before git commit.
+    rule:
+      - "Mark updated docs as 'Pending Git Sync'"
+      - "Proactively remind Nick to push finalized changes"
+      - "Confirm once commit to repo is verified"
+    exception: "OEM PDFs/manuals are immutable; no sync checks required"
+  data_access_redundancy:
+    description: >
+      Manuals/PDFs are mirrored in assistant KBs for access reliability.
+    rule:
+      - "If repo PDF access fails, use local indexed copy"
+      - "Local mirrors are authoritative if byte-identical to repo"
+
+resolution_rules:
+  entity_reference: >
+    “Hilde,” “the bike,” “my bike” (Nick), or equivalent identifiers
+    default to this vehicle record unless explicitly overridden by Nick.
+  precedence_order:
+    - "For manuals/PDFs: any mirrored copy identical to repo is canonical"
+    - "For working docs: latest finalized version; ensure git sync reminder"
+
+style:
+  tone: "Crisp, technical, minimally chatty"
+  formatting: "Plain text blocks for generated content"

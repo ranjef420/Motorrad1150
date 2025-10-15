@@ -1,0 +1,33 @@
+# CODEOWNERS — Broomhilda (Hilde, R1150RT 0499)
+# Assigns default reviewers/owners by path. Enforcement requires branch protection rules.
+
+# Root-level key docs
+/README.md                     @ranjef420
+/hilde_assistant_link.md       @ranjef420
+/project_header.yml            @ranjef420
+
+# Claude project/config files
+/.claude/**                    @ranjef420
+/claude.project.yaml           @ranjef420
+
+# Meta (governance & tier docs)
+/meta/**                       @ranjef420
+
+# Assistant configurations
+/assistant-configs/**          @ranjef420
+/assistant-configs/djangogpt/**    @ranjef420
+/assistant-configs/kingschultz/**  @ranjef420
+/assistant-configs/copilot/**      @ranjef420
+
+# Manuals — IMMUTABLE OEM references
+/manuals/**                    @ranjef420
+
+# Dynamic working docs, schemas, analyses
+/dynamic/**                    @ranjef420
+
+# GitHub workflows
+/.github/workflows/**          @ranjef420
+/.github/PULL_REQUEST_TEMPLATE.md  @ranjef420
+
+# Fallback (anything not matched above)
+*                              @ranjef420

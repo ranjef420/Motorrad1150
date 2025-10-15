@@ -1,0 +1,20 @@
+# stage LFS attributes first
+git add .gitattributes
+
+# write .gitignore (note the newline after the first command)
+cat > .gitignore << 'EOF'
+# macOS
+.DS_Store
+
+# Claude local memory (keep settings.json tracked though)
+.claude/memory.json
+
+# Logs / temp
+*.log
+tmp/
+
+# VIN Data (ignored if you want these to stay local)
+EOF
+
+# stage .gitignore
+git add .gitignore

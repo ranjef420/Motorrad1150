@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(./manuals/**)",
+      "Read(./assistant-configs/**)",
+      "Read(./dynamic/**)",
+      "Read(./meta/**)",
+      "Read(./project_header.yml)",
+      "Write(./dynamic/**)",
+      "Write(./assistant-configs/**)",
+      "Bash(git status)",
+      "Bash(git diff:*)"
+    ],
+    "ask": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Write(./meta/**)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./secrets/**)",
+      "Bash(rm -rf /*)",
+      "Bash(sudo *)"
+    ]
+  },
+  "additionalDirectories": [],
+  "enableAllProjectMcpServers": true,
+  "model": "claude-3.7-sonnet",
+  "projectRoot": "/Users/nickwade/Repos/Broomhilda",
+  "memory": {
+    "enabled": true,
+    "file": "./.claude/memory.json"
+  }
+}

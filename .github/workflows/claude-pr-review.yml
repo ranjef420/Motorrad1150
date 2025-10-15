@@ -1,0 +1,31 @@
+name: Claude PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Claude PR Review
+        uses: anthropics/claude-code-action@v1
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        with:
+          task: "review_pr"
+          model: "claude-3.7-sonnet"  # or latest recommended at time of use
+          instructions: |
+            Project = Broomhilda (Hilde, 2004 BMW R1150RT, Type 0499).
+            Respect AUTHORITY_TIERS.md: OEM PDFs in /manuals are immutable.
+            Validate docs for clarity, structure, and naming conventions.
+            Enforce 'Pending Git Sync' guardrail on edited working docs.
+            Prefer minimal diffs and concrete suggestions.
+          max_tokens: 20000
