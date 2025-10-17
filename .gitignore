@@ -20,3 +20,7 @@ EOF
 git add .gitignore.venv/
 __pycache__/
 *.pyc
+
+# Ignore SQLite artifacts
+parts/*.sqlite*
+
