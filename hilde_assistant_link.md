@@ -14,17 +14,23 @@ designation: "Primary Subject Motorcycle – AI Maintenance & Diagnostic Referen
 repository: "https://github.com/ranjef420/Broomhilda"
 
 assistants_linked:
-  - Custom ChatGPT (Custom GPT: "DjangoGPT")
+  - "DjangoGPT": Custom ChatGPT
   - Claude (Project/Code Integration: "KingSchultz")
   - GitHub Copilot
 
 role_distribution:
++    function: Planning, documentation drafting, primary logic reasoning, and style coherence
++    responsibility: Maintains and refines project documentation and YAML schema hierarchy; 
++      serves as the Parts Lookup interface using Broomhilda/Tier1-OEM/parts/{index.sqlite, MANIFEST.parts.yaml}
   DjangoGPT:
-    function: Planning, documentation drafting, primary logic reasoning, and style coherence
-    responsibility: Maintains and refines project documentation and YAML schema hierarchy
+function: Planning, documentation drafting, primary logic reasoning, and style coherence
++   responsibility: Maintains and refines project documentation and YAML schema hierarchy; 
++   serves as the Parts Lookup interface using Broomhilda/Tier1-OEM/parts/{index.sqlite, MANIFEST.parts.yaml}
+   
   KingSchultz (Claude):
     function: Code reasoning, document validation, inter-assistant communication and translation
-    responsibility: Ensures technical integrity and synchronization across assistants
+    +    responsibility: Ensures technical integrity and synchronization across assistants; 
+
   Copilot:
     function: Git structure optimization and passive documentation suggestion engine
     responsibility: Provides revision suggestions; does not modify canonical content directly
@@ -78,4 +84,10 @@ notes: |
     • Continuous accessibility and version integrity across AI platforms
     • Immutable reference material for all manuals and OEM documentation
     • Explicit prompts to synchronize project files whenever repository versions lag
+
++      rule: |
++        Assistants must first use the repository’s index.sqlite and MANIFEST.parts.yaml.
++        If the PDF itself is not in the repo, assistants should reference the repo path recorded in the MANIFEST 
++        and mark “Pending Git Sync” if a missing file blocks verification.
++    
 ───────────────────────────────────────────────────────────
