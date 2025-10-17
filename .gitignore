@@ -17,4 +17,6 @@ tmp/
 EOF
 
 # stage .gitignore
-git add .gitignore
+git add .gitignore.venv/
+__pycache__/
+*.pyc
