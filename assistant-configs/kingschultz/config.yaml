@@ -368,6 +368,25 @@ linked_assistants:
     kingschultz_provides: \"Validation requests, result interpretation\"
     claude_code_provides: \"Automated analysis, bulk operations, schema validation\"
 
+  mediated_communication:
+    permitted: false
+    responsibilities_if_enabled:
+      - "Validate orchestrator-sourced query requests for parts/index.sqlite"
+      - "Produce analysis results (no automatic script execution)"
+      - "Mark any produced docs 'Pending Git Sync' when applicable"
+    allowed_message_types:
+      - "parts-query-analysis (non-destructive)"
+      - "script-validation summaries"
+      - "schema-validation results"
+    prohibited_message_types:
+      - "raw SQL execution commands"
+      - "commands to run shell scripts"
+      - "git operations"
+    approval_tokens:
+      high_risk: "requires explicit Nick-provided approval token"
+    audit_requirements:
+      include_confidence_tags: true   # [VERIFIED], [PARTIAL], [UNCERTAIN], [UNAVAILABLE]
+
 # ───────────────────────────────────────────────────────────
 # PARTS DATABASE INTEGRATION (PRIMARY ROLE DETAILS)
 # ───────────────────────────────────────────────────────────
