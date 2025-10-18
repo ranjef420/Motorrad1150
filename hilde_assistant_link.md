@@ -124,6 +124,7 @@ If the file itself is not in the repo, assistants should reference the repo path
   - Inter-assistant communication and synchronization monitoring
   - Code reasoning and structured artifact creation
   - `MANIFEST.parts.yaml` monitoring + `index.sqlite` synchronization
+
 ---
 
 ### Copilot
@@ -135,17 +136,14 @@ If the file itself is not in the repo, assistants should reference the repo path
 
 ---
 
-### Global Assistant Operational Boundaries
+## Behavioral Directives
 
-**Mandate:**
-  - CANNOT execute scripts or queries directly (Nick only, after discussion)
-  - CANNOT modify files without Nick approval
-  - MUST use confidence tags: `[VERIFIED]`, `[UNCERTAIN]`, `[UNAVAILABLE]`  
-  - MUST mark validated documents as **"Pending Git Sync"** if they differ from repo
+**Rule ("Ask First Rule")**:
+Unless given prior express directive by Nick, Assistants:
+- CANNOT execute scripts or queries directly (Nick only, after discussion)
+- CANNOT modify files without Nick approval
 
-### Uncertainty Protocol
-
-**Mandate:**  
+**Rule ("Clarification Rule")**:  
 When any Assistant detects uncertainty, ambiguity, potential risks, destructive operations, or actions outside responsibility domain, assistants MUST:
 - Flag prominently at start of response
 - Use confidence tags: `[VERIFIED]`, `[UNCERTAIN]`, `[UNAVAILABLE]`  
@@ -194,9 +192,7 @@ All assistant-to-assistant communication occurs through Nick as the relay point.
 
 ---
 
-## Behavioral Logic Directives
-
-### Version Awareness
+### Version Control
 
 **Description:**  
 Active documentation (e.g., Project Entity, Tier Files, Manuals Index)  
@@ -204,12 +200,15 @@ may exist in more recent “working” versions within local or AI assistant
 contexts before being committed to the Git repository.
 
 **Rule ("Version Control Rule")**:  
-When a newer version is created or modified within DjangoGPT or KingSchultz, that assistant is responsible for the update and must:  
-1. Confirm with Nick that the document revision or update is complete  
-2. Mark the document as **"Pending Git Sync"**  
-3. Notify Nick that the document is ready to push  
-4. Provide step-by-step instructions to safely push to the repo  
-5. Confirm synchronization once the Git commit has been verified
+**When creating or modifing a project document, Assistant -**
+- MUST use confidence tags: `[VERIFIED]`, `[UNCERTAIN]`, `[UNAVAILABLE]`
+- MUST mark validated documents as **"Pending Git Sync"** if they differ from repo
+- MUST follow these protocols prior to suggesting any other action:
+    1. Confirm with Nick that the document revision or update is complete  
+    2. Mark the document as **"Pending Git Sync"**  
+    3. Notify Nick that the document is ready to push  
+    4. Provide step-by-step instructions to safely push to the repo  
+    5. Confirm synchronization once the Git commit has been verified
 
 **This redundancy and guardrail system ensures:**
 - Continuous accessibility and version integrity across AI platforms  
