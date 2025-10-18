@@ -90,7 +90,7 @@ and mark **“Pending Git Sync”** if a missing file blocks verification.
 **Compliance Requirement:**  
 - All assistants MUST respect the authority hierarchy and operate within role boundaries.
 
-### DjangoGPT (Custom ChatGPT — “Motorrad Maintainer”)
+### DjangoGPT
 - **Function:** Strategic Planner & Documentation Architect  
 - **Responsibility:**  
   - Strategic planning and documentation architecture
@@ -107,7 +107,7 @@ and mark **“Pending Git Sync”** if a missing file blocks verification.
 
 ---
 
-### KingSchultz (Claude Project/Claude Code Integration)
+### KingSchultz
 - **Function:** Technical Analyst & Parts Database Interface Coordinator  
 - **Responsibility:**  
   - PRIMARY Parts Database Interface Coordinator
