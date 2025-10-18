@@ -7,26 +7,26 @@ vin: WB10499A14ZE93239
 model: R1150RT
 type: "Authority / Police"
 type_code: 0499
-color: "Night-Black" (nacht-schwarz, Zierl)
-owner: "Nick (User)"
-designation: "Primary Subject Motorcycle – AI Maintenance & Diagnostic Reference"
+color: "Night-Black"
+owner: "Nick" (User)
+designation: "AI Maintenance & Diagnostic Toolkit for Nick's Motorcycle"
 repository: "https://github.com/ranjef420/Broomhilda"
 
 assistants_linked:
-  - "DjangoGPT": Custom ChatGPT
-  - Claude (Project/Code Integration: "KingSchultz")
-  - GitHub Copilot
+  - "DjangoGPT" (Custom ChatGPT)
+  - "KingSchultz" (Claude Project/Claude Code Integration)
+  - "Copilot" (GitHub Copilot Chat)
 
 role_distribution:
 +    function: Planning, documentation drafting, primary logic reasoning, and style coherence
-+    responsibility: Maintains and refines project documentation and YAML schema hierarchy; 
++    responsibility: Maintains and refines project documentation and YAML schema hierarchy;
 +      serves as the Parts Lookup interface using Broomhilda/Tier1-OEM/parts/{index.sqlite, MANIFEST.parts.yaml}
   DjangoGPT:
 function: Planning, documentation drafting, primary logic reasoning, and style coherence
 +   responsibility: Maintains and refines project documentation and YAML schema hierarchy; 
-+   serves as the Parts Lookup interface using Broomhilda/Tier1-OEM/parts/{index.sqlite, MANIFEST.parts.yaml}
++   serves as the Parts Lookup interface using Broomhilda/parts/{index.sqlite, MANIFEST.parts.yaml}
    
-  KingSchultz (Claude):
+  KingSchultz:
     function: Code reasoning, document validation, inter-assistant communication and translation
     +    responsibility: Ensures technical integrity and synchronization across assistants; 
 
@@ -37,7 +37,7 @@ function: Planning, documentation drafting, primary logic reasoning, and style c
 data_sources:
   - Git Repository (Primary): "https://github.com/ranjef420/Broomhilda"
   - AI Project Files: Official BMW / OEM manuals, part diagrams, reference documents, and data assets
-  - Assistant Knowledge Bases: Indexed, mirrored versions for DjangoGPT, KingSchultz, and Copilot
+  - Assistant Knowledge Bases: Indexed, mirrored contents saved within DjangoGPT and KingSchultz
 
 behavioral_logic_directives:
   - Version Awareness:
@@ -63,15 +63,13 @@ behavioral_logic_directives:
       rule: |
         If the Git repository cannot serve a document (e.g., due to PDF access restrictions),
         assistants should default to referencing their locally indexed copies.
-        Local mirrors are considered authoritative if identical to the Git version.
+        Local mirrors are considered authoritative and identical to the Git version.
 
 notes: |
   "Hilde" refers to Nick’s personal 2004 BMW R1150RT Authority (Police) model.
 
-  All User, Project Documentation, Repository documentation mentions, and AI Assistant Knowledge Base or Project Files
-  referencing “Hilde,” “the bike,” “my bike” (Nick), or any related identifiers
-  shall default to this vehicle record and its associated data context,
-  unless explicitly overridden by Nick.
+  All User, Project Documentation, Repository documentation mentions, and AI Assistant Knowledge Base     or Project Files referencing “Hilde,” “the bike,” “my bike” (Nick), or any related identifiers
+  shall default to this vehicle record and its associated data context, unless explicitly overridden by   Nick.
 
   The linked Git repository (https://github.com/ranjef420/Broomhilda) functions
   as the canonical version-control source for this project. However, working documentation
