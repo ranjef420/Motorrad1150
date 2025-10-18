@@ -500,47 +500,6 @@ linked_assistants:
     notes: >
       Copilot may suggest automated validation tasks that Claude Code
       can execute. Coordination happens via Nick and KingSchultz.
-
-  mediated_communication:
-    enabled_by_default: false
-    description: >
-      Controlled assistant-to-assistant messaging is disabled by default.
-      When Tier 0 explicitly authorizes mediated communication and the Orchestrator
-      is deployed, set enabled_by_default: true in a follow-up commit that includes
-      Orchestrator details and scope.
-    orchestrator:
-      name: "Broomhilda Orchestrator (mediator)"
-      endpoint: "https://orchestrator.example.internal/v1/"   # Replace with real URL after deployment
-      auth_method: "JWT (per-assistant client credentials) / mTLS optional"
-      audit_log_endpoint: "https://orchestrator.example.internal/audit/"
-    allowed_message_types:
-      - "metadata-only notifications (non-actionable)"
-      - "schema-validation requests and responses"
-      - "parts-query coordination messages (non-destructive)"
-      - "technical validation requests for scripts (analysis responses only)"
-    disallowed_message_types:
-      - "git write commands (git add/commit/push)"
-      - "direct script execution commands"
-      - "secrets or credential exchange in plaintext"
-      - "requests that would perform destructive repository changes"
-    approval_gates:
-      high_risk: "explicit_nick_token_required"
-      destructive: "explicit_nick_token_required"
-    audit_requirements:
-      log_retention_days: 365
-      log_fields:
-        - "timestamp_utc"
-        - "sender_assistant"
-        - "receiver_assistant"
-        - "message_id"
-        - "message_hash"
-        - "message_summary"
-        - "operation_scope"
-        - "related_commit_sha"
-    rollout_requirements:
-      - "Tier 0 commit enabling mediated_communication with scope and orchestrator details"
-      - "Orchestrator deployed in staging and passed pilot tests (14 days)"
-      - "Secrets management and key rotation policy documented"
     
 # ───────────────────────────────────────────────────────────
 # DOMAIN-SPECIFIC EXPERTISE
