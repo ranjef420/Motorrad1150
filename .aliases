@@ -1,0 +1,234 @@
+# BMW R1150RT Parts Toolchain Aliases
+# Source this file from your ~/.zshrc or run manually: source /Users/nickwade/Repos/Broomhilda/.aliases
+# 
+# Repository: https://github.com/ranjef420/Broomhilda
+# Local Root: /Users/nickwade/Repos/Broomhilda
+
+# ============================================================================
+# CORE PATHS
+# ============================================================================
+
+export HILDE_ROOT="/Users/nickwade/Repos/Broomhilda"
+export HILDE_SCRIPTS="$HILDE_ROOT/scripts"
+
+# ============================================================================
+# CORRECT DEPLOYMENT ORDER
+# ============================================================================
+
+# | Step | Tool                   | Role                    | Why it must run before next                        |
+# |------|------------------------|--------------------------|----------------------------------------------------|
+# | 1    | **PDF directory setup** | Source material          | Everything else depends on the PDFs                |
+# | 2    | **pdf_sanitizer.sh**    | Clean filenames          | Prevents broken links and mismatches               |
+# | 3    | **emit_manifest.sh**    | Create master catalog    | Provides IDs and structure for the database        |
+# | 4    | **ocr_all.sh**          | Extract searchable text  | Supplies the searchable content                    |
+# | 5    | **build_index.sh**      | Assemble SQLite database | Combines manifest and OCR text                     |
+# | 6    | **REFERENCE_INDEX.yaml**| Add metadata             | Enriches the finished database                     |
+# | 7    | **query.sh**            | CLI search               | Consumes the complete dataset                      |
+# |------|------------------------|--------------------------|----------------------------------------------------|
+
+# Step 1 — Prepare the Source PDFs
+# Component: /parts/pdf/
+# Dependency: None
+# Purpose: Raw material — the OEM BMW parts manuals and diagrams that everything else uses.
+#   • This folder is the foundation.
+#   • Each PDF corresponds to a parts diagram (e.g., “34 - Brakes/Front Wheel Brake – Integral ABS.pdf”).
+#   • Every later step reads, indexes, or extracts data from these files.
+# Why it comes first:
+#   All other scripts depend on consistent file paths and content inside /parts/pdf/.
+#   If this directory is incomplete, nothing else can be built.
+
+# Step 2 — Sanitize Filenames
+# Component: scripts/pdf_sanitizer.sh
+# Input: /parts/pdf/
+# Output: Cleaned filenames
+# Example: "Valve Cover .pdf" → "Valve Cover.pdf"
+# Purpose:
+#   To normalize filenames (remove trailing spaces, fix punctuation, strip illegal characters).
+# Why it comes second:
+#   Every following step — manifest creation, OCR, and database indexing — matches entries by filename.
+#   A single mismatched space or “smart quote” would cause broken links between the PDF, OCR output, and YAML manifest.
+# Dependency logic:
+#   • emit_manifest.sh must see consistent paths.
+#   • ocr_all.sh mirrors file structure exactly — one typo here breaks that mirror.
+# So, sanitization is the cleanup crew before construction.
+
+# Step 3 — Emit the Manifest
+# Component: scripts/emit_manifest.sh
+# Input: /parts/pdf/
+# Output: /parts/MANIFEST.parts.yaml
+# Purpose:
+#   Scans the sanitized PDF directory and builds a structured catalog:
+#   - id: R22-0499-34-front-wheel-brake-integral-abs
+#     group: 34
+#     title: "Front Wheel Brake – Integral ABS"
+#     path: "34 - Brakes/Front Wheel Brake – Integral ABS.pdf"
+# Why it comes third:
+#   This YAML is the canonical map — every PDF gets a unique ID, group number, and path.
+#   Later scripts use it as a “Rosetta Stone” to align the OCR text, metadata, and database records.
+# Dependency logic:
+#   • The manifest tells build_index.sh what exists and where.
+#   • It doesn’t require OCR text yet — it just needs the file structure to be correct.
+# So: You can’t build or query a database for parts that don’t yet exist in a manifest.
+
+# Step 4 — Run OCR
+# Component: scripts/ocr_all.sh
+# Input: /parts/pdf/
+# Output: /parts_ocr/ (mirrors directory structure)
+# Side Output: .hashes/ cache
+# Purpose:
+#   Extracts readable text from each diagram using Tesseract OCR, deskews, normalizes, and reports quality.
+# Why it comes fourth:
+#   • The manifest now defines exactly which PDFs to process.
+#   • The OCR step uses that manifest indirectly by following the same directory layout.
+#   • It’s the “translator” — turning the images inside PDFs into searchable text.
+# Dependency logic:
+#   • The output text is what populates the searchable content in index.sqlite.
+#   • The hash cache ensures you don’t reprocess unchanged files (critical for large collections).
+# So this is the data extraction stage.
+
+# Step 5 — Build the Database
+# Component: scripts/build_index.sh
+# Inputs:
+#   • /parts/MANIFEST.parts.yaml
+#   • /parts_ocr/
+# Output: /parts/index.sqlite
+# Purpose:
+#   • Reads manifest entries to get the catalog structure.
+#   • Reads OCR text to populate full-text search fields.
+#   • Creates two tables:
+#     • docs (core parts and text)
+#     • extras (metadata placeholders)
+#   • Builds an FTS5 search index for instant queries.
+# Why it comes fifth:
+#   This is the assembly step — combining the map (manifest) and the content (OCR text) into a usable database.
+# Dependency logic:
+#   • Without OCR, the database would be empty.
+#   • Without a manifest, the database wouldn’t know the group, title, or file path.
+# So: The manifest provides the skeleton, OCR provides the flesh, and build_index.sh gives it a brain.
+
+# Step 6 — Add Custom Metadata
+# Component: REFERENCE_INDEX.yaml (and later, import_extras_from_yaml.py)
+# Input: index.sqlite
+# Output: Populated extras table in SQLite
+# Purpose:
+#   Augments the raw OEM catalog with custom annotations — RealOEM URLs, torque specs, part numbers, and notes.
+# Why it comes sixth:
+#   • This information is supplemental, not structural.
+#   • It enriches the existing database but doesn’t affect core indexing.
+# Dependency logic:
+#   • Requires the extras table created by build_index.sh.
+#   • If imported earlier, there’d be nowhere to store it.
+# So this is the knowledge injection phase, adding personal or research-level data.
+
+# Step 7 — Query the Database
+# Component: scripts/query.sh
+# Input: index.sqlite
+# Output: Terminal results (plain text or JSON)
+# Purpose:
+#   Provides command-line access to search the entire parts index by keyword, part number, tags, or group number.
+# Why it comes last:
+#   • It depends on every preceding layer:
+#     • Clean filenames (to match results)
+#     • Manifest (for metadata)
+#     • OCR (for searchable text)
+#     • Database (as backend)
+# Dependency logic:
+#   If any earlier step failed, query.sh would either return no results or throw an error.
+# So: this is the user interface, the end-product you built everything for.
+
+# ============================================================================
+# CORE TOOLS
+# ============================================================================
+
+# Clean PDF filenames (remove spaces, fix irregular characters)
+alias bmw-clean='$HILDE_SCRIPTS/pdf_sanitizer.sh'
+
+# Update MANIFEST.parts.yaml
+alias bmw-manifest='$HILDE_SCRIPTS/emit_manifest.sh'
+
+# Extract searchable text from PDF via OCR
+alias bmw-ocr='BINARIZE=1 LANGS="eng" $HILDE_SCRIPTS/ocr_all.sh'
+
+# Rebuild the SQLite FTS5 database
+alias bmw-index='$HILDE_SCRIPTS/build_index.sh'
+
+# Query the parts database
+alias bmw-query='$HILDE_SCRIPTS/query.sh'  # Supports filters: -g (group), --json, --exact, --tags, --part
+
+# ============================================================================
+# COMBINED COMMANDS
+# ============================================================================
+
+# Refresh Database: clean → manifest → ocr → index
+# Run after adding new PDFs or updating existing diagrams
+# Order matters: MANIFEST must exist before indexing
+alias bmw-rebuild='bmw-clean && bmw-manifest && bmw-ocr && bmw-index'
+
+# Quick text search (automatically adds -- separator)
+# Usage: bmw-search "brake line"
+# Output: CSV format (group_no, title, diagram, path)
+alias bmw-search='bmw-query --'
+
+# Search with JSON output including metadata fields
+# Usage: bmw-search-json "abs sensor"
+# Output: JSON array with part_numbers, tags, notes, realoem
+alias bmw-search-json='bmw-query --json --fields --'
+
+# Search within specific BMW group number
+# Usage: bmw-search-group 34 -- "front wheel"
+# Output: CSV filtered to specified group
+alias bmw-search-group='bmw-query -g'
+
+# ============================================================================
+# HELP FUNCTION
+# ============================================================================
+
+bmw-help() {
+  cat <<'EOF'
+### Available Commands
+
+# Core Workflow:
+  bmw-clean         ./scripts/pdf_sanitizer.sh
+  bmw-manifest      ./scripts/emit_manifest.sh
+  bmw-ocr           BINARIZE=1 LANGS="eng" ./scripts/ocr_all.sh
+  bmw-index         ./scripts/build_index.sh
+  bmw-query         ./scripts/query.sh
+
+# Convenience:
+  bmw-rebuild       # Full workflow (clean → manifest → ocr → index)
+  bmw-search        # Quick search: bmw-search "brake line"
+  bmw-search-json   # JSON output: bmw-search-json "abs sensor"
+  bmw-search-group  # Group filter: bmw-search-group 34 -- "wheel"
+
+# Quick searches
+bmw-search "brake line"
+bmw-search-json "abs modulator"
+
+# Advanced searches
+bmw-search-group 34 -- "front wheel"
+bmw-query -g 34 --json --fields -- "pressure modulator"
+bmw-query --exact -- "Front Wheel Brake – Integral ABS"
+EOF
+}
+
+# ============================================================================
+# VERIFICATION & INITIALIZATION
+# ============================================================================
+
+# Verify repository structure exists
+_bmw_verify_root() {
+  if [ ! -d "$HILDE_ROOT/parts" ]; then
+    echo "WARNING: $HILDE_ROOT/parts not found. Check HILDE_ROOT path." >&2
+    return 1
+  fi
+  if [ ! -d "$HILDE_SCRIPTS" ]; then
+    echo "WARNING: $HILDE_SCRIPTS not found. Check scripts directory." >&2
+    return 1
+  fi
+  return 0
+}
+
+# Run verification on source (silent unless error)
+_bmw_verify_root 2>/dev/null || true
+
+echo "BMW R1150RT Parts Toolchain aliases loaded. Type 'bmw-help' for usage."

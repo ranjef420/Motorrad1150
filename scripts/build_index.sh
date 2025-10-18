@@ -1,50 +1,118 @@
-# /Users/nickwade/Hilde/scripts/build_index.sh
 #!/usr/bin/env bash
 set -euo pipefail
 
-PDF_DIR="${1:?ocr dir (e.g., /Users/nickwade/Hilde/parts_ocr)}"
-DB_IN="${2:?db path OR directory (e.g., /Users/nickwade/Hilde/index or .../index.sqlite)}"
+# Prefer Homebrew sqlite (has FTS5/JSON built in), but fall back to PATH.
+   SQLITE3_BIN="${SQLITE3_BIN:-/opt/homebrew/opt/sqlite/bin/sqlite3}"
+   if ! command -v "$SQLITE3_BIN" >/dev/null 2>&1; then
+     SQLITE3_BIN="$(command -v sqlite3 || true)"
+   fi
+   [ -n "$SQLITE3_BIN" ] || { echo "ERROR: sqlite3 not found." >&2; exit 1; }
 
-# If DB arg is a directory, write index.sqlite inside it
-if [ -d "$DB_IN" ]; then
-  DB="${DB_IN%/}/index.sqlite"
-else
-  DB="$DB_IN"
+ROOT="/Users/nickwade/Repos/Broomhilda"
+MANIFEST="$ROOT/parts/MANIFEST.parts.yaml"   # put the manifest here (not at repo root)
+OCR_DIR="$ROOT/parts_ocr"
+DB="$ROOT/parts/index.sqlite"
+
+# Use a Python venv so PyYAML works cleanly on macOS (PEP 668)
+VENV="$ROOT/.venv"
+PY="$VENV/bin/python3"
+
+if [ ! -x "$PY" ]; then
+  echo "• Creating Python venv at $VENV"
+  python3 -m venv "$VENV"
+  "$VENV/bin/pip" install --upgrade pip >/dev/null
+  "$VENV/bin/pip" install pyyaml >/dev/null
 fi
 
-# Fresh DB
-rm -f "$DB"
-sqlite3 "$DB" 'PRAGMA journal_mode=WAL;'
-sqlite3 "$DB" 'CREATE VIRTUAL TABLE docs USING fts5(path, group_no, title, diagram, text, tokenize="porter");'
+mkdir -p "$(dirname "$DB")"
 
-# Walk all PDFs
-while IFS= read -r pdf; do
-  rel="${pdf#$PDF_DIR/}"
+# Generate a TSV of (group_no, title, diagram, path, body)
+"$PY" - <<'PY' > /tmp/docs.tsv
+import os, sys, yaml, pathlib
 
-  # group number from top-level dir prefix like "61 - Electrical System/..."
-  group_no="$(echo "$rel" | cut -d'/' -f1 | awk '{print $1}')"
+ROOT = "/Users/nickwade/Repos/Broomhilda"
+MANIFEST = os.path.join(ROOT, "parts", "MANIFEST.parts.yaml")
+OCR_DIR = os.path.join(ROOT, "parts_ocr")
 
-  title="$(basename "$pdf" .pdf)"
-  # pull codes like (23_0744) if present
-  diagram="$(echo "$title" | sed -n 's/.*(\([0-9][0-9]_[0-9]\{4\}\)).*/\1/p')"
+with open(MANIFEST, "r", encoding="utf-8") as f:
+    items = yaml.safe_load(f)
 
-  tmp="$(mktemp)"
-  pdftotext -layout "$pdf" "$tmp"
+def read_body(rel_path):
+    # rel_path is like "34 - Brakes/Front Wheel Brake – Integral ABS.pdf"
+    txt = os.path.join(OCR_DIR, os.path.splitext(rel_path)[0] + ".txt")
+    try:
+        with open(txt, "r", encoding="utf-8", errors="ignore") as t:
+            return t.read().replace("\0"," ")
+    except FileNotFoundError:
+        return ""
 
-  # Escape single quotes for SQL
-  esc_path="${rel//\'/\'\'}"
-  esc_group="${group_no//\'/\'\'}"
-  esc_title="${title//\'/\'\'}"
-  esc_diagram="${diagram//\'/\'\'}"
-  esc_text="$(sed "s/'/''/g" "$tmp")"
+print("group_no\ttitle\tdiagram\tpath\tbody")  # header
+for it in items:
+    group_no = str(it.get("group_no","")).strip()
+    title    = (it.get("title","") or "").strip()
+    diagram  = (it.get("diagram","") or "").strip()
+    path     = (it.get("path","") or "").replace("parts/pdf/","",1).strip()
+    body     = read_body(path)
+    print(f"{group_no}\t{title}\t{diagram}\t{path}\t{body}".replace("\n"," "))
+PY
 
-  sqlite3 "$DB" <<SQL
-INSERT INTO docs (path, group_no, title, diagram, text)
-VALUES ('$esc_path', '$esc_group', '$esc_title', '$esc_diagram', '$esc_text');
+# (Re)create DB (FTS5 for 'body' + metadata; extras table for schema add-ons)
+"$SQLITE3_BIN" "$DB" <<'SQL'
+PRAGMA journal_mode=WAL;
+DROP TABLE IF EXISTS docs;
+DROP TABLE IF EXISTS docs_idx;
+DROP TABLE IF EXISTS extras;
+DROP VIEW  IF EXISTS docs_view;
+
+-- Base row store
+CREATE TABLE docs (
+  id       INTEGER PRIMARY KEY,
+  group_no INTEGER,
+  title    TEXT,
+  diagram  TEXT,
+  path     TEXT,
+  body     TEXT
+);
+
+-- FTS index on text columns
+CREATE VIRTUAL TABLE docs_idx USING fts5(
+  title, path, body, content='docs', content_rowid='id'
+);
+
+-- Trigger to sync docs -> fts
+CREATE TRIGGER docs_ai AFTER INSERT ON docs BEGIN
+  INSERT INTO docs_idx(rowid, title, path, body) VALUES (new.id, new.title, new.path, new.body);
+END;
+CREATE TRIGGER docs_ad AFTER DELETE ON docs BEGIN
+  INSERT INTO docs_idx(docs_idx, rowid, title, path, body) VALUES('delete', old.id, old.title, old.path, old.body);
+END;
+CREATE TRIGGER docs_au AFTER UPDATE ON docs BEGIN
+  INSERT INTO docs_idx(docs_idx, rowid, title, path, body) VALUES('delete', old.id, old.title, old.path, old.body);
+  INSERT INTO docs_idx(rowid, title, path, body) VALUES (new.id, new.title, new.path, new.body);
+END;
+
+-- Schema extensions: lightweight extras keyed by path (unique)
+CREATE TABLE extras (
+  path TEXT PRIMARY KEY,
+  part_numbers TEXT,  -- CSV or JSON string
+  realoem TEXT,       -- URL or code
+  notes TEXT,
+  tags TEXT           -- CSV or JSON string
+);
+
+-- Unified view for downstream tools
+CREATE VIEW docs_view AS
+SELECT d.id, d.group_no, d.title, d.diagram, d.path,
+       e.part_numbers, e.realoem, e.notes, e.tags
+FROM docs d
+LEFT JOIN extras e ON e.path = d.path;
+
 SQL
 
-  rm -f "$tmp"
-done < <(find "$PDF_DIR" -type f -name '*.pdf' | sort)
+# Load TSV
+"$SQLITE3_BIN" "$DB" <<'SQL'
+.mode tabs
+.import /tmp/docs.tsv docs
+SQL
 
-# Helpful stats
-sqlite3 "$DB" 'SELECT count(*) AS total_docs FROM docs;'
+echo "✔ Index built at $DB"
