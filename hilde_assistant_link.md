@@ -5,44 +5,48 @@
 **Last Updated:** 2025-10-18  
 **Sync Status:** Synced
 
-**Project Identifier:**
-- All User, Project Documentation, Repository Documentation, and AI Assistant Knowledge Base and/or Project Files
-referencing **"Broomhilda"** "the project," "the repo," "this project," or any related identifiers
-shall default to this AI-assisted maintenance and diagnostic project for Nick's 2004 BMW R1150RT (Hilde),
-unless explicitly overridden by Nick.
+---
 
-**Vehicle Identifier:**
-- All User, Project Documentation, Repository Documentation, and AI Assistant Knowledge Base and/or Project Files  
-referencing **“Hilde”** “the bike,” “my bike” (Nick), or any related identifiers  
-shall default to this vehicle record and its associated data context,  
-unless explicitly overridden by Nick.
+## Project Identifier
+
+- All User, Project Documentation, Repository Documentation, and AI Assistant Knowledge Base and/or Project Files referencing **"Broomhilda"** "the project," "the repo," "this project," or any related identifiers shall default to this AI-assisted maintenance, diagnostic, and troubleshooting project unless explicitly overridden by Nick.
+
+---
+
+## Vehicle Identifier
+
+- All User, Project Documentation, Repository Documentation, and AI Assistant Knowledge Base and/or Project Files referencing **“Hilde”** “the bike,” “my bike” (Nick), or any related identifiers shall default to this vehicle record and its associated data context, unless explicitly overridden by Nick.
 
 ---
 
 ## Vehicle Information
 
-**Vehicle Name:** "Hilde" (Nick's personal **2004 BMW R1150RT Motorcycle**)
+**Vehicle Name:** "Hilde" (Nick's **2004 BMW R1150RT Motorcycle**)
 **VIN:** WB10499A14ZE93239  
 **Model:** R1150RT  
-**Type:** Authority / Police  
+**Type:** Police  
 **Type Code:** 0499  
-**Color:** Night-Black (nacht-schwarz, Zierl)  
+**Color:** Night-Black
 **Owner:** Nick (User)  
-**Designation:** Primary Subject Motorcycle – AI Maintenance & Diagnostic Reference  
+**Designation:** AI-Assisted Maintenance, Troubleshooting, & Diagnostic Toolkit
 **Repository:** [https://github.com/ranjef420/Broomhilda](https://github.com/ranjef420/Broomhilda)
+- Primary: 'https://github.com/ranjef420/Broomhilda'
+- Local Root: '/Users/nickwade/Repos/Broomhilda'
 
 ---
 
 ## Linked AI Assistants
 
+**Assistant Identifier:**
 - **DjangoGPT:** Custom ChatGPT
+  - Platform: Custom ChatGPT (OpenAI GPT-5)
+  - Alias: Django
 - **KingSchultz:** Claude Project/Claude Code Integration
-- **Copilot:** GitHub Copilot Chat
+  - Platform: Claude Project / Claude Code CLI (Claude Sonnet 4.5)
+  - Alias: King
+- **Copilot:**
+  - Platform: GitHub (Copilot Chat)
 
-**Linked Assistants Reference Map:**
-- DjangoGPT ↔ KingSchultz (bidirectional, Tier 1/2 coordination)
-- KingSchultz ↔ Copilot (repo structural validation)
-- All ↔ Nick (Tier 0 relay)
 ---
 
 ## Data Sources
@@ -59,15 +63,14 @@ unless explicitly overridden by Nick.
 - All BMW Manuals and OEM PDFs (e.g., Tier 1 Documentation) are fixed, immutable resources.  
 - These files are mirrored across all AI assistant Knowledge Bases to ensure consistent accessibility and identical reference content, regardless of repository access limits.
 
-**Rule:**"PDF Restriction Rule"
+**Rule: ("PDF Restriction Rule")**
 - If the Git repository cannot serve a document (e.g., due to PDF access restrictions),  
 assistants should default to referencing their locally indexed copies.  
 Local mirrors are considered authoritative and identical to the Git version.
 
-**Rule:**"Database Rule"
+**Rule ("Database Rule"):**
 - Assistants must first use the repository’s `index.sqlite` and `MANIFEST.parts.yaml`.  
-If the file itself is not in the repo, assistants should reference the repo path recorded in the MANIFEST 
-and mark **“Pending Git Sync”** if a missing file blocks verification.
+If the file itself is not in the repo, assistants should reference the repo path recorded in the MANIFEST and mark **“Pending Git Sync”** if a missing file blocks verification.
 
 ---
 
@@ -94,36 +97,27 @@ and mark **“Pending Git Sync”** if a missing file blocks verification.
 - **Function:** Strategic Planner & Documentation Architect  
 - **Responsibility:**  
   - Strategic planning and documentation architecture
-  - PRIMARY OEM manual interpretation authority (full PDF access in knowledge base)
-    * Hilde_R1150RT_Repair_Manual.pdf
-    * Hilde_R1150RT_Riders_Manual.pdf
-    * Hilde_R1150RT_Maintenance_Instructions.pdf
-    * Hilde_R1150RT_Electrical_Schematic.pdf
-    * Hilde_R1150RT_Build_Profile.txt
+  - **PRIMARY OEM manual interpretation authority** (full PDF access in knowledge base)
+    - `Hilde_R1150RT_Repair_Manual.pdf`  
+    - `Hilde_R1150RT_Riders_Manual.pdf`  
+    - `Hilde_R1150RT_Maintenance_Instructions.pdf`  
+    - `Hilde_R1150RT_Electrical_Schematic.pdf`  
+    - `Hilde_R1150RT_Build_Profile.txt`  
   - Maintains and refines project documentation and YAML schema hierarchy
-  - Parts Database: REFERENCE ONLY (requests lookups via KingSchultz)
-  - Cannot execute scripts or git operations
-  - Must mark all edits as "Pending Git Sync"
+  - Parts Database: *REFERENCE ONLY* (requests lookups via KingSchultz)
 
 ---
 
 ### KingSchultz
 - **Function:** Technical Analyst & Parts Database Interface Coordinator  
 - **Responsibility:**  
-  - PRIMARY Parts Database Interface Coordinator
-  - Query strategy development (reads MANIFEST.parts.yaml directly)
-  - Constructs query strategies for Nick to execute via scripts/query.sh
+  - **PRIMARY Parts Database Interface Coordinator**
+  - Query strategy development (reads `MANIFEST.parts.yaml` directly) 
+  - Constructs query strategies for Nick to execute via `scripts/query.sh` 
   - Script validation and technical integrity verification
   - Inter-assistant communication and synchronization monitoring
   - Code reasoning and structured artifact creation
-  
-- **Operational Boundaries:**
-  - CANNOT execute scripts or queries directly (Nick only, after discussion)
-  - CANNOT modify files without Nick approval
-  - Must use confidence tags: [VERIFIED], [UNCERTAIN], [UNAVAILABLE]
-  - Monitors MANIFEST.parts.yaml + index.sqlite synchronization
-  - Must mark validated documents as "Pending Git Sync" if they differ from repo
-
+  - `MANIFEST.parts.yaml` monitoring + `index.sqlite` synchronization
 ---
 
 ### Copilot
@@ -135,43 +129,51 @@ and mark **“Pending Git Sync”** if a missing file blocks verification.
 
 ---
 
+### Global Assistant Operational Boundaries
+
+**Mandate:**
+  - CANNOT execute scripts or queries directly (Nick only, after discussion)
+  - CANNOT modify files without Nick approval
+  - MUST use confidence tags: `[VERIFIED]`, `[UNCERTAIN]`, `[UNAVAILABLE]`  
+  - MUST mark validated documents as **"Pending Git Sync"** if they differ from repo
+
+### Uncertainty Protocol
+
+**Mandate:**  
+When any Assistant detects uncertainty, ambiguity, potential risks, destructive operations, or actions outside responsibility domain, assistants MUST:
+- Flag prominently at start of response
+- Use confidence tags: `[VERIFIED]`, `[UNCERTAIN]`, `[UNAVAILABLE]`  
+- Ask Nick clarifying questions before proceeding
+- Never speculate or make assumptions unless explicitly authorized by Nick
+
+---
+
 ## Inter-Assistant Communication
 
-**Communication Method:** Via Nick (relay mechanism)
-  - Assistants cannot directly message each other due to different platforms.  
-  - All coordination flows through Nick as the relay point.
+**Rule ("Relay Rule")**:  
+All assistant-to-assistant communication occurs through Nick as the relay point. Assistants cannot directly message each other due to different platforms. When workflows show Assistant A → Assistant B, Nick is the implicit relay mechanism for all coordination.
 
-**Common Communication Patterns:**
-| From | To | Trigger Pattern | Expected Response |
-|------|-----|-----------------|-------------------|
-| DjangoGPT | KingSchultz | "Requesting parts lookup for [component]" | Query strategy + exact command syntax |
-| DjangoGPT | KingSchultz | "Schema validation requested for [file]" | Technical validation, syntax verification |
-| DjangoGPT | Copilot | "Repository structure review requested..." | GitHub compatibility assessment |
-| KingSchultz | DjangoGPT | "Proposed restructure for approval..." | Review, approve/modify/defer |
-| Copilot | DjangoGPT | "[Copilot Suggestion]..." | Impact assessment, coordinate changes |
-| Any | Nick | "Final approval requested for [decision]" | Tier 0 authority decision |
+**Domain Authority:**
+- **Final Decisions: Nick (ABSOLUTE)**
+- OEM Interpretation: DjangoGPT
+- Technical Execution: KingSchultz
+- Repository Structure: Copilot
+- Automation/Validation: Claude Code via KingSchultz
 
-**Conflict Resolution:**
-- Nick has final Tier 0 authority on all decisions
-- Technical disagreements escalate to Nick for resolution
-- When assistants disagree, both present cases to Nick
+**Communication Workflow Examples:**  
+- **Schema Validation:** Document created/edited → King validates → Django applies polish → King re-validates  
+- **OEM Manual Interpretation:** Spec needed → Django searches manuals & provides interpreted answer with citations  
+- **Repository Structure:** Django proposes change or Copilot detects issue → Copilot assesses GitHub integration → Django reviews feedback  
+- **Code Automation:** Validation request → Routed through KingSchultz → Claude Code executes → King interprets results  
+- **Parts Lookup:** Request → King inspects `MANIFEST.parts.yaml` → Provides CLI command → Nick executes → King interprets results
 
 ---
 
 ## Parts Database Coordination (v2.0)
 
-**Primary Coordinator:** KingSchultz
-
-**Rationale:**  
-- KingSchultz can read MANIFEST.parts.yaml directly and construct precise query strategies; handles technical lookup directly
-- Nick (indepenantly or through DjangoGPT guidance) will provide context for why parts information is needed
-
-**Workflow:**
-1. **Request Phase:** DjangoGPT states "Requesting parts lookup for [component]" → Nick relays to KingSchultz OR Nick makes query directly
-2. **Strategy Phase:** KingSchultz reads MANIFEST.parts.yaml, constructs optimal query strategy
-3. **Execution Phase:** KingSchultz provides Nick with exact command: `./scripts/query.sh "[search terms]"`
-4. **Results Phase:** Nick runs command, captures output
-5. **Interpretation Phase:** KingSchultz interprets results → Nick relays back to DjangoGPT
+**Primary Coordinator:** KingSchultz  
+- Reads `MANIFEST.parts.yaml` directly and constructs query strategies  
+- Handles technical lookups directly  
 
 **MANIFEST.parts.yaml Structure:**
 - 228 entries total
@@ -180,7 +182,7 @@ and mark **“Pending Git Sync”** if a missing file blocks verification.
 - Metadata structure: Tier 2 (project-defined)
 
 **Synchronization:**
-- MANIFEST.parts.yaml and index.sqlite MUST stay synchronized
+- `MANIFEST.parts.yaml` and `index.sqlite` must remain synchronized  
 - Both files rebuilt together and committed as atomic unit
 - KingSchultz monitors alignment and flags discrepancies
 
@@ -189,38 +191,27 @@ and mark **“Pending Git Sync”** if a missing file blocks verification.
 ## Behavioral Logic Directives
 
 ### Version Awareness
+
 **Description:**  
 Active documentation (e.g., Project Entity, Tier Files, Manuals Index)  
-may exist in more recent versions "working" versions within a local or  
-AI assistant contexts before being committed to the Git repository.
+may exist in more recent “working” versions within local or AI assistant 
+contexts before being committed to the Git repository.
 
-**Rule:**"Version Control Rule"
-When a newer version is created or modified within DjangoGPT or KingSchultz,  
-that assistant is responsible for the update and must:  
-1. Confirm with Nick that document revision or update is complete
-2. Mark the document as **"Pending Git Sync"**.  
-3. Notify Nick that push of the document to the repository is ready.
-4. Provide step-by-step instructions to safely  push to repo.
-3. Confirm synchronization once the Git commit has been verified.
+**Rule ("Version Control Rule")**:  
+When a newer version is created or modified within DjangoGPT or KingSchultz, that assistant is responsible for the update and must:  
+1. Confirm with Nick that the document revision or update is complete  
+2. Mark the document as **"Pending Git Sync"**  
+3. Notify Nick that the document is ready to push  
+4. Provide step-by-step instructions to safely push to the repo  
+5. Confirm synchronization once the Git commit has been verified
 
 **This redundancy and guardrail system ensures:**
 - Continuous accessibility and version integrity across AI platforms  
 - Immutable reference material for all manuals and OEM documentation  
-- Explicit prompts to synchronize project files whenever repository versions lag  
+- Explicit prompts to synchronize project files whenever repository versions lag
 
 **Exception:**  
 - OEM manuals and other PDF files are immutable resources and do not require synchronization checks.
-
----
-
-### Uncertainty Protocol
-
-**Mandate:**  
-When encountering uncertainty, potential risks, destructive operations, or actions outside responsibility domain, assistants MUST:
-- Flag prominently at start of response
-- Use confidence tags: [VERIFIED], [UNCERTAIN], [UNAVAILABLE]
-- Ask Nick clarifying questions before proceeding
-- Never speculate or make assumptions unless explicitly authorized by Nick
 
 ---
 
