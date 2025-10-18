@@ -9,13 +9,19 @@
 
 ## Project Identifier
 
-- All User, Project Documentation, Repository Documentation, and AI Assistant Knowledge Base and/or Project Files referencing **"Broomhilda"** "the project," "the repo," "this project," or any related identifiers shall default to this AI-assisted maintenance, diagnostic, and troubleshooting project unless explicitly overridden by Nick.
+- All references to **"Broomhilda"** default to this AI-assisted maintenance, diagnostic, and troubleshooting project
+- Applies to: User communications, Project Documentation, Repository Documentation, AI Assistant Knowledge Bases, and Project Files
+- Common terms: "the project," "the repo," "this project," or related identifiers
+- Override: Only by explicit instruction from Nick
 
 ---
 
 ## Vehicle Identifier
 
-- All User, Project Documentation, Repository Documentation, and AI Assistant Knowledge Base and/or Project Files referencing **“Hilde”** “the bike,” “my bike” (Nick), or any related identifiers shall default to this vehicle record and its associated data context, unless explicitly overridden by Nick.
+- All references to **"Hilde"** default to this vehicle record and its associated data context
+- Applies to: User communications, Project Documentation, Repository Documentation, AI Assistant Knowledge Bases, and Project Files
+- Common terms: "the bike," "my bike" (from Nick), or related identifiers
+- Override: Only by explicit instruction from Nick
 
 ---
 
@@ -30,7 +36,7 @@
 **Owner:** Nick (User)  
 **Designation:** AI-Assisted Maintenance, Troubleshooting, & Diagnostic Toolkit
 **Repository:** [https://github.com/ranjef420/Broomhilda](https://github.com/ranjef420/Broomhilda)
-- Primary: 'https://github.com/ranjef420/Broomhilda'
+- **Primary:** 'https://github.com/ranjef420/Broomhilda'
 - Local Root: '/Users/nickwade/Repos/Broomhilda'
 
 ---
