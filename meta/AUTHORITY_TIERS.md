@@ -1,7 +1,7 @@
 # AUTHORITY TIERS – BROOMHILDA PROJECT (HILDE, R1150RT 0499)
 
-This document defines the authority hierarchy governing all materials, data, and generated content
-within the Broomhilda repository. Each tier establishes a level of reliability, mutability, and precedence
+This document defines the Tier authority hierarchy governing all materials, data, and generated content
+within the Broomhilda repository and the rules that govern who can change what. Each tier establishes a level of reliability, mutability, and precedence
 for reference, documentation, and synchronization across AI assistants.
 
 ---

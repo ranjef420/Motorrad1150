@@ -15,7 +15,7 @@ assistant:
   name: "DjangoGPT"
   codename: "Django"
   platform: "Custom ChatGPT (OpenAI)"
-  model: "GPT-4 (Custom GPT Purpose: Motorrad Maintainer Assistant)"
+  model: "GPT-5 (Custom GPT Purpose: Motorrad Maintainer Assistant)"
   
 project:
   name: "Broomhilda"
