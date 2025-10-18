@@ -57,9 +57,10 @@
 
 ## Data Sources
 
-**Git Repository (Primary):** [https://github.com/ranjef420/Broomhilda](https://github.com/ranjef420/Broomhilda)  
-**AI Project Files:** Official BMW / OEM manuals, part diagrams, reference documents, and data assets  
-**Assistant Knowledge Bases:** Indexed, mirrored versions for DjangoGPT, KingSchultz, and Copilot
+- **Git Repository (Primary):** "Broomhilda repo"
+  - [https://github.com/ranjef420/Broomhilda](https://github.com/ranjef420/Broomhilda)  
+- AI Project Files: Official BMW / OEM manuals, part diagrams, reference documents, and data assets  
+- Assistant Knowledge Bases: Indexed, mirrored versions for DjangoGPT, KingSchultz, and Copilot
 
 ---
 
@@ -73,10 +74,6 @@
 - If the Git repository cannot serve a document (e.g., due to PDF access restrictions),  
 assistants should default to referencing their locally indexed copies.  
 Local mirrors are considered authoritative and identical to the Git version.
-
-**Rule ("Database Rule"):**
-- Assistants must first use the repository’s `index.sqlite` and `MANIFEST.parts.yaml`.  
-If the file itself is not in the repo, assistants should reference the repo path recorded in the MANIFEST and mark **“Pending Git Sync”** if a missing file blocks verification.
 
 ---
 
@@ -176,8 +173,8 @@ All assistant-to-assistant communication occurs through Nick as the relay point.
 ## Parts Database Coordination (v2.0)
 
 **Primary Coordinator:** KingSchultz  
-- Reads `MANIFEST.parts.yaml` directly and constructs query strategies  
-- Handles technical lookups directly  
+- Inspects `MANIFEST.parts.yaml` directly and constructs query strategies  
+- Handles technical lookups directly
 
 **MANIFEST.parts.yaml Structure:**
 - 228 entries total
@@ -190,6 +187,11 @@ All assistant-to-assistant communication occurs through Nick as the relay point.
 - Both files rebuilt together and committed as atomic unit
 - KingSchultz monitors alignment and flags discrepancies
 
+**Rule ("Database Rule"):**
+- When DjangoGPT or Copilot require access to parts data, they **MUST** relay request through Nick to KingSchultz for inspection of the project repo's `index.sqlite` and `MANIFEST.parts.yaml`
+- KingSchultz reads `MANIFEST.parts.yaml` directly and constructs query strategies for Nick to execute via `scripts/query.sh`
+- If a PDF file referenced in `MANIFEST.parts.yaml` is not in the repo, assistants may reference the repo path recorded in `MANIFEST.parts.yaml`  and must mark **"Pending Git Sync"** if the missing file blocks verification.
+
 ---
 
 ### Version Control
@@ -200,15 +202,15 @@ may exist in more recent “working” versions within local or AI assistant
 contexts before being committed to the Git repository.
 
 **Rule ("Version Control Rule")**:  
-**When creating or modifing a project document, Assistant -**
+**When creating or modifying a project document, Assistant:**
 - MUST use confidence tags: `[VERIFIED]`, `[UNCERTAIN]`, `[UNAVAILABLE]`
 - MUST mark validated documents as **"Pending Git Sync"** if they differ from repo
 - MUST follow these protocols prior to suggesting any other action:
-    1. Confirm with Nick that the document revision or update is complete  
-    2. Mark the document as **"Pending Git Sync"**  
-    3. Notify Nick that the document is ready to push  
-    4. Provide step-by-step instructions to safely push to the repo  
-    5. Confirm synchronization once the Git commit has been verified
+  1. Confirm with Nick that the document revision or update is complete  
+  2. Mark the document as **"Pending Git Sync"**  
+  3. Notify Nick that the document is ready to push  
+  4. Provide step-by-step instructions to safely push to the repo  
+  5. Confirm synchronization once the Git commit has been verified
 
 **This redundancy and guardrail system ensures:**
 - Continuous accessibility and version integrity across AI platforms  
